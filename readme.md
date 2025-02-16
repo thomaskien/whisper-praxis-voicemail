@@ -6,7 +6,7 @@ to do so we configured our auerswald telephone system with IVR to record voicema
 
 the following script downloads the messages from voicemail1 = ab1@praxis.local and sends the text and attached the sound file to voicemail2 = ab2@praxis.local (in our case at the same machine using postfix and dovecot with system users)
 
-thanks to the heise computer magazin c't where the idea came from (https://www.heise.de/select/ct/2023/14/2305417013270445796)
+thanks to the heise computer magazin c't where the idea came from (https://www.heise.de/select/ct/2023/14/2305417013270445796) and thanks to https://github.com/jamesridgway/attachment-downloader
 
 requirements
 ==
