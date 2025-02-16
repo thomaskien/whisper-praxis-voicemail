@@ -28,7 +28,7 @@ sudo su
 #update and install requirements and whisper:
 apt update
 apt upgrade
-apt install screen ffmpeg git
+apt install screen ffmpeg git mailutils
 python3 -m venv whisperenv; source whisperenv/bin/activate
 pip install pip-review attachment-downloader
 pip install git+https://github.com/openai/whisper.git
