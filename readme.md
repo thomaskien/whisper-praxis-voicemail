@@ -19,7 +19,8 @@ hardware
 ===
 * your existing computer with an email client installed
 * 1 separate old computer
-  - or a very powerful machine if running on your existing server (not recommended) 
+  - or a very powerful machine if running on your existing server (not recommended)
+  - or a raspberry pi 5 with 8GB ram (see benchmark & discussion below)  
 * needs 8GB of RAM
   - computer crashes if less RAM installed / not enough free ram (CAVE)
   - 5GB+ need to be free for whisper
@@ -27,17 +28,14 @@ hardware
   - we run it on a i3-3220 which was taken out of service since no windows 11 support
   - convertion time on that machine ca. 2min for a common prescription order with 20sec length
   - on my mac M4 the task takes about 10 seconds only
-  - also runs on raspberry pi 5 8GB ram (see benchmark & discussion below)    
+   
 
 software
 ===
-* a linux machine (script be adapted for mac easily and maybe windows)
-* local installed mailserver the manual way or mailcow for docker
-  - set SKIP_FTS=y SKIP_SOGO=y SKIP_CLAMD=y in mailcow.conf otherwise mailcow will eat all the ram
-  - adjust "Forwarding Hosts" in configuration otherwise the "spam" the script sends is not accepted (missing headers etc)
-  - create two mailboxes like ab1 and ab2
-* telephone system that sends out voicemail like any fritzbox or auerswald
-  - configure it to send the voicemail to ab1@praxis.local using the mail server of your local machine
+* linux and some more open source software (script be adapted for mac easily and maybe windows)
+* local installed mailserver like mailcow for docker
+* any email client on your existing computers supporting IMAP
+
  
 preparations
 ==
@@ -48,6 +46,7 @@ preparations
  - set SKIP_FTS=y SKIP_SOGO=y SKIP_CLAMD=y in mailcow.conf otherwise mailcow will eat all the ram
  - adjust "Forwarding Hosts" in configuration otherwise the "spam" the script sends is not accepted (missing headers etc)
  - create two mailboxes like ab1 and ab2
+ - configure your telephone system to send the voicemail to ab1@praxis.local using the mail server of your just installed machine
 
 <pre>
 # become root
