@@ -183,7 +183,6 @@ apt upgrade
  benchmark
  ==
  * using same wav file of typical 33sec recorded on fritzbox
- * all using modem large-v3-turbo
  * output of the file:
 <pre>
 Ja, hallo, ich teste einmal hier XXX XXX geboren XXX. XXX 19XX, Telefonnummer 0xxxxxxxx.
