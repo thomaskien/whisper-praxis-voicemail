@@ -71,7 +71,7 @@ nano email-transc.sh
 script
 ==
 * paste the following text and adjust what needed // remove that is not needed // no empty first line
-<code>
+<pre><code>
 #!/bin/bash
 
 #activate environment
@@ -150,7 +150,7 @@ echo "Press [CTRL+C] to stop.."
 # wait 30 seconds and then start from top
 sleep 30 
 done  
-</code>
+</code></pre>
 
 test
 ==
