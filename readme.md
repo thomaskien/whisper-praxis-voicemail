@@ -25,7 +25,7 @@ hardware
   - we run it on a i3-3220 which was taken out of service since no windows 11 support
   - convertion time on that machine ca. 2min for a common prescription order with 20sec length
   - on my mac M4 the task takes about 10 seconds only
-  - maybe it will also run on raspberry pi 5 8GB ram (I will test that)    
+  - also runs on raspberry pi 5 8GB ram (see benchmark & discussion below)    
 
 software
 ===
