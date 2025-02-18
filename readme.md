@@ -1,27 +1,34 @@
 convert your voicemail to text email using whisper
 ====
-in our medical practice we do use voicmail quite much to postpone as much work as possible during the rush hours (*much* patients arriving and calling at the same time at opening).
-
-to do so we configured our auerswald telephone system with IVR to record voicemail and send them to a local mailbox in the practice.
-
-the following script downloads the messages from voicemail1 = ab1@praxis.local and sends the text and attached the sound file to voicemail2 = ab2@praxis.local (in our case at the same machine using postfix and dovecot with system users)
+* in our medical practice we do use voicmail quite much to postpone as much work as possible during the rush hours (*much* patients arriving and calling at the same time at opening).
+* to do so we configured our auerswald telephone system with IVR to record voicemail and send them to a local mailbox in the practice.
+* because of datenschutz we do not want the informations provided by the patients to leave the building
+* the following script downloads the messages from voicemail1 = ab1@praxis.local and sends the text and attached the sound file to voicemail2 = ab2@praxis.local (in our case at the same machine using postfix and dovecot with system users)
 
 thanks to the heise computer magazin c't where the idea came from (https://www.heise.de/select/ct/2023/14/2305417013270445796) and thanks to https://github.com/jamesridgway/attachment-downloader
 
 requirements
 ==
-* telephone system that sends out voicemail like any fritzbox or auerswald
+hardware
+===
 * needs 8GB of RAM
   - computer crashes if less RAM installed
+  - >5gb need to be free for whisper
+* ca. 2012 old intel core i3/i5 is sufficient
+  - we run it on a i3-3220 which was taken out of service since no windows 11 support
+  - convertion time on that machine ca. 2min for a common prescription order with 20sec length
+  - on my mac M4 the task takes about 10 seconds only
+  - maybe it will also run on raspberry pi 5 8GB ram (I will test that)
+software
+===
+* linux (script be adapted for mac easily and maybe windows)
 * local installed mailserver the manual way or mailcow for docker
   - set SKIP_FTS=y SKIP_SOGO=y SKIP_CLAMD=y in mailcow.conf otherwise mailcow will eat all the ram
   - adjust "Forwarding Hosts" in configuration otherwise the "spam" the script sends is not accepted (missing headers etc)
-* ca. 2012 old intel core i3/i5 is sufficient
-  - (we run it on a i3-3220 which was taken out of service since no windows 11 support)
-  - convertion time on that machine ca. 2min for a common prescription order with 20sec length
-  - maybe it will also run on raspberry pi 5 8GB ram (I will test that)
-
-
+  - create two mailboxes like ab1 and ab2
+* telephone system that sends out voicemail like any fritzbox or auerswald
+  - configure it to send the voicemail to ab1@praxis.local using the mail server of your local machine
+ 
 preperations
 ==
 * install fresh debian/raspbian (tested with debian 12 bookworm)
