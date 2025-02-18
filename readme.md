@@ -29,7 +29,8 @@ hardware
 
 software
 ===
-* linux (script be adapted for mac easily and maybe windows)
+* a linux machine (script be adapted for mac easily and maybe windows)
+* your existing computer with email client installed
 * local installed mailserver the manual way or mailcow for docker
   - set SKIP_FTS=y SKIP_SOGO=y SKIP_CLAMD=y in mailcow.conf otherwise mailcow will eat all the ram
   - adjust "Forwarding Hosts" in configuration otherwise the "spam" the script sends is not accepted (missing headers etc)
