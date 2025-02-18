@@ -96,6 +96,7 @@ do
 if [ -e "$f" ]; then 
 echo "Processing $f file..." 
 # take action on each file. $f store current file name 
+# change language if needed:
 whisper --model_dir ./models "$f" --language de --model large-v3-turbo --output_format txt --fp16 False 
 fi 
 # change if your system uses mp3
@@ -178,3 +179,51 @@ apt upgrade
 * mailcow:
  <pre>/opt/mailcow-dockerized/update.sh</pre>
 
+ benchmark
+ ==
+ * using same wav file of typical 33sec recorded on fritzbox
+ * all using modem large-v3-turbo
+ * output of the file:
+   <pre>
+     Ja, hallo, ich teste einmal hier XXX XXX geboren XXX. XXX 19XX, Telefonnummer 0xxxxxxxx.
+Ich möchte bestellen Thorosemite 5 mg, die 100er Packung N3 und dann bitte auch Ramipril 2,5 mg, die 100er Packung.
+Dann bitte auch Metoprolol Neuraxafarm 47,5 mg, auch die große Packung N3.
+Genau, ich bedanke mich. Tschüss.
+   </pre>
+
+model large-v3-turbo
+=
+ * Raspberry pi 5 without any cooler/ventilator (throtteling last seconds)
+ <pre>
+   Tue 18 Feb 11:03:40 GMT 2025
+   Tue 18 Feb 11:07:06 GMT 2025
+   =206sec
+   = 
+ </pre>
+  * Raspberry pi 5 passive cooler (not throtteling)
+ <pre>
+   Tue 18 Feb 11:22:05 GMT 2025
+   Tue 18 Feb 11:25:30 GMT 2025
+   =205sec
+ </pre>
+* iMac 2012 Intel(R) Core(TM) i5-2500S CPU @ 2.70GHz
+ <pre>
+   Tue Feb 18 12:16:07 CET 2025
+   Tue Feb 18 12:18:14 CET 2025
+   =127sec
+ </pre>
+* Mac mini M4 2025
+  <pre>
+  Tue Feb 18 12:14:07 CET 2025 
+  Tue Feb 18 12:14:24 CET 2025
+  =17s
+</pre>
+
+model large-v3
+=
+* Mac mini M4 2025
+  <pre>
+Tue Feb 18 12:39:03 CET 2025
+Tue Feb 18 12:40:10 CET 2025
+  =67s
+</pre>
