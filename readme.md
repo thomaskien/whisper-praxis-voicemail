@@ -19,7 +19,7 @@ hardware
 ===
 * your existing computer with an email client installed
 * 1 separate old computer
-  - or a very powerful machine if running on you existing server (not remommended) 
+  - or a very powerful machine if running on you existing server (not recommended) 
 * needs 8GB of RAM
   - computer crashes if less RAM installed / not enough free ram (CAVE)
   - 5GB+ need to be free for whisper
