@@ -7,7 +7,7 @@ convert your voicemail to text email using whisper
 
 thanks to the heise computer magazin c't where the idea came from (https://www.heise.de/select/ct/2023/14/2305417013270445796) and thanks to https://github.com/jamesridgway/attachment-downloader
 
-
+![Screenshot](https://github.com/thomaskien/whisper-praxis-voicemail/blob/main/Screenshot.png)
 
 requirements
 ==
