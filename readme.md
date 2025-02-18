@@ -139,7 +139,7 @@ echo >> "$OUT"
 #swaks is the best option
 swaks -s 127.0.0.1 -f Voicemail -t ab2@praxis.local --body $OUT --attach $f –suppress-data --header 'Subject: TEXT: '$SUB'' 
 
-=clean up=
+#=clean up=
 mv "$f" ./done/ 
 cat "$OUT" 
 mv "$OUT" ./done/ 
