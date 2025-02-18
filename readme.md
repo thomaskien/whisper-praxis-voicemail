@@ -9,16 +9,18 @@ thanks to the heise computer magazin c't where the idea came from (https://www.h
 
 requirements
 ==
+
 hardware
 ===
 * needs 8GB of RAM
   - computer crashes if less RAM installed
-  - >5gb need to be free for whisper
+  - 5GB+ need to be free for whisper
 * ca. 2012 old intel core i3/i5 is sufficient
   - we run it on a i3-3220 which was taken out of service since no windows 11 support
   - convertion time on that machine ca. 2min for a common prescription order with 20sec length
   - on my mac M4 the task takes about 10 seconds only
-  - maybe it will also run on raspberry pi 5 8GB ram (I will test that)
+  - maybe it will also run on raspberry pi 5 8GB ram (I will test that)    
+
 software
 ===
 * linux (script be adapted for mac easily and maybe windows)
