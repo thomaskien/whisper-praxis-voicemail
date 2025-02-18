@@ -50,7 +50,6 @@ script
 * paste the following text and adjust what needed // remove that is not needed
 <pre>
 <code>
-
 #!/bin/bash
 
 #activate environment
@@ -145,4 +144,23 @@ check process
 ==
 <pre>screen -r email-tra</pre>
 * to detach screen to background again: crtl+a -> ctrl+d
+use productivly
+==
+* change the passwords of the mailboxes
+* change the admin-password of mailcow (standard admin:moohoo)
+* set up ssh-key authentication and disable password-login on the machine
+install updates
+==
+* whisper
+<pre>
+pip-review --interactive
+pip install --upgrade --no-deps --force-reinstall git+https://github.com/openai/whisper.git
+</pre>
+* system:
+<pre>
+apt update
+apt upgrade
+</pre>
+* mailcow:
+ <pre>/opt/mailcow-dockerized/update.sh</pre>
 
