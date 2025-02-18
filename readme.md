@@ -71,7 +71,6 @@ nano email-transc.sh
 script
 ==
 * paste the following text and adjust what needed // remove that is not needed // no empty first line
-<pre>
 <code>
 #!/bin/bash
 
@@ -152,7 +151,7 @@ echo "Press [CTRL+C] to stop.."
 sleep 30 
 done  
 </code>
-</pre>
+
 test
 ==
 * just run:
