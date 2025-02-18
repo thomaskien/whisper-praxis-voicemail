@@ -42,6 +42,13 @@ software
 preparations
 ==
 * install fresh debian/raspbian (tested with debian 12 bookworm)
+* install local email-server like mailcow for docker
+ - install docker https://docs.docker.com/engine/install/debian/ 
+ - install mailcow https://docs.mailcow.email/de/getstarted/install/
+ - set SKIP_FTS=y SKIP_SOGO=y SKIP_CLAMD=y in mailcow.conf otherwise mailcow will eat all the ram
+ - adjust "Forwarding Hosts" in configuration otherwise the "spam" the script sends is not accepted (missing headers etc)
+ - create two mailboxes like ab1 and ab2
+
 <pre>
 # become root
 sudo su
