@@ -1,10 +1,12 @@
 convert your voicemail to text email using whisper
 ====
-* in our medical practice we do use voicmail quite much to postpone as much work as possible during the rush hours (*much* patients arriving and calling at the same time at opening).
+* in our medical practice we do use voicemail quite much to postpone as much work as possible during the rush hours (*much* patients arriving and calling at the same time at opening).
 * to do so we configured our auerswald telephone system with IVR to record voicemail and send them to a local mailbox in the practice.
 * AI (german KI) does the job quite good, there are several (expensive) cloud products available typically including a own IVR
-* because of datenschutz we do not want the informations provided by the patients to leave the building
-* the following script downloads the messages from voicemail1 = ab1@praxis.local and sends the text and attached the sound file to voicemail2 = ab2@praxis.local (in our case at the same machine using postfix and dovecot with system users)
+* AI models can be downloaded for free and be run on yur own computer
+* voicemail to text works quite well this way
+* because of datenschutz we also do not want the information provided by the patients to leave the building
+* the following script downloads the messages from voicemail1 = ab1@praxis.local and sends the converted text and attached the sound file to voicemail2 = ab2@praxis.local (in our case at the same machine using postfix and dovecot with system users)
 
 thanks to the heise computer magazin c't where the idea came from (https://www.heise.de/select/ct/2023/14/2305417013270445796) and thanks to https://github.com/jamesridgway/attachment-downloader
 
