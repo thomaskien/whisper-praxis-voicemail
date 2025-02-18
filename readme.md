@@ -17,6 +17,7 @@ requirements
 
 hardware
 ===
+* your existing computer with an email client installed
 * 1 separate old or a very powerful machine (if used as a server for other stuff)
 * needs 8GB of RAM
   - computer crashes if less RAM installed / not enough free ram (CAVE)
@@ -30,7 +31,6 @@ hardware
 software
 ===
 * a linux machine (script be adapted for mac easily and maybe windows)
-* your existing computer with email client installed
 * local installed mailserver the manual way or mailcow for docker
   - set SKIP_FTS=y SKIP_SOGO=y SKIP_CLAMD=y in mailcow.conf otherwise mailcow will eat all the ram
   - adjust "Forwarding Hosts" in configuration otherwise the "spam" the script sends is not accepted (missing headers etc)
