@@ -17,9 +17,9 @@ requirements
 
 hardware
 ===
-* 1 separate or very powerful machine
+* 1 separate old or a very powerful machine (if used as a server for other stuff)
 * needs 8GB of RAM
-  - computer crashes if less RAM installed
+  - computer crashes if less RAM installed / not enough free ram (CAVE)
   - 5GB+ need to be free for whisper
 * ca. 2012 old intel core i3/i5 is sufficient
   - we run it on a i3-3220 which was taken out of service since no windows 11 support
