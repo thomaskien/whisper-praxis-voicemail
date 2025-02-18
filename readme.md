@@ -1,4 +1,4 @@
-convert you voicemail to text email using whisper
+convert your voicemail to text email using whisper
 ====
 in our medical practice we do use voicmail quite much to postpone as much work as possible during the rush hours (*much* patients arriving and calling at the same time at opening).
 
