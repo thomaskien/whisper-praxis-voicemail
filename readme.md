@@ -158,6 +158,7 @@ use productivly
 * change the passwords of the mailboxes
 * change the admin-password of mailcow (standard admin:moohoo)
 * set up ssh-key authentication and disable password-login on the machine
+* maybe use other user than root
 install updates
 ==
 * whisper
