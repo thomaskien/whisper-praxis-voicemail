@@ -70,7 +70,7 @@ nano email-transc.sh
 </pre>
 script
 ==
-* paste the following text and adjust what needed // remove that is not needed
+* paste the following text and adjust what needed // remove that is not needed // no empty first line
 <pre>
 <code>
 #!/bin/bash
@@ -137,7 +137,7 @@ echo >> "$OUT"
 #sendEmail.pl also is good:
 #cat "$OUT" | ./sendEmail.pl -t ab2@praxis.local -f ab1@praxis.local -s 127.0.0.1:25 -v -u "TEXT: $SUB" -a $f 
 #swaks is the best option
-swaks -s 127.0.0.1 -f Voicemail -t ab2@praxis.local --body $OUT --attach $f –suppress-data --header 'Subject: TEXT: '$SUB'' 
+swaks -s 127.0.0.1 -f Voicemail -t ab2@praxis.local --body $OUT --attach $f --header 'Subject: TEXT: '$SUB'' 
 
 #=clean up=
 mv "$f" ./done/ 
