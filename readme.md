@@ -12,6 +12,7 @@ requirements
 
 hardware
 ===
+* 1 separate or very powerful machine
 * needs 8GB of RAM
   - computer crashes if less RAM installed
   - 5GB+ need to be free for whisper
@@ -198,9 +199,8 @@ model large-v3-turbo
    Tue 18 Feb 11:03:40 GMT 2025
    Tue 18 Feb 11:07:06 GMT 2025
    =206sec
-   = 
  </pre>
-  * Raspberry pi 5 passive cooler (not throtteling)
+  * Raspberry pi 5 with passive cooler (not throtteling)
  <pre>
    Tue 18 Feb 11:22:05 GMT 2025
    Tue 18 Feb 11:25:30 GMT 2025
@@ -227,3 +227,17 @@ Tue Feb 18 12:39:03 CET 2025
 Tue Feb 18 12:40:10 CET 2025
   =67s
 </pre>
+* iMac 2012 Intel(R) Core(TM) i5-2500S CPU @ 2.70GHz
+<pre>
+Tue Feb 18 12:58:17 CET 2025
+Tue Feb 18 13:04:44 CET 2025
+  =387sec
+</pre>
+
+discussion
+=
+* even a raspberry pi 5 can be used if you get less than 7min of voicemail per hour (factor six conversion time)
+* an old desktop computer provides better performance (factor 3) but consumes much more energy
+* a new fast machine like the M4 can convert voicemail in realtime even for two voice lines
+* model large-v3 can only be used on fast machines like the M4 (factor 2 conversion time)
+* I found no benefit in the error rate of using large-v3 instead of the lage-v3-turbo model, so turbo is sufficient
