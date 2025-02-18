@@ -37,7 +37,7 @@ software
 * telephone system that sends out voicemail like any fritzbox or auerswald
   - configure it to send the voicemail to ab1@praxis.local using the mail server of your local machine
  
-preperations
+preparations
 ==
 * install fresh debian/raspbian (tested with debian 12 bookworm)
 <pre>
@@ -57,7 +57,7 @@ mkdir wav
 mkdir done
 touch email-transc.sh 
 chmod +x email-transc.sh 
-# now paste end edit file
+# now paste and edit the file
 nano email-transc.sh 
 </pre>
 script
