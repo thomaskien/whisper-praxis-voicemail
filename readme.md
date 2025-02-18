@@ -184,12 +184,12 @@ apt upgrade
  * using same wav file of typical 33sec recorded on fritzbox
  * all using modem large-v3-turbo
  * output of the file:
-   <pre>
-     Ja, hallo, ich teste einmal hier XXX XXX geboren XXX. XXX 19XX, Telefonnummer 0xxxxxxxx.
+<pre>
+Ja, hallo, ich teste einmal hier XXX XXX geboren XXX. XXX 19XX, Telefonnummer 0xxxxxxxx.
 Ich möchte bestellen Thorosemite 5 mg, die 100er Packung N3 und dann bitte auch Ramipril 2,5 mg, die 100er Packung.
 Dann bitte auch Metoprolol Neuraxafarm 47,5 mg, auch die große Packung N3.
 Genau, ich bedanke mich. Tschüss.
-   </pre>
+</pre>
 
 model large-v3-turbo
 =
@@ -222,7 +222,7 @@ model large-v3-turbo
 model large-v3
 =
 * Mac mini M4 2025
-  <pre>
+<pre>
 Tue Feb 18 12:39:03 CET 2025
 Tue Feb 18 12:40:10 CET 2025
   =67s
