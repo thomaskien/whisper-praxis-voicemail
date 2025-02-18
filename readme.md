@@ -144,21 +144,25 @@ test
 <pre>
 ./email-transc.sh
 </pre>
+
 start on boot
 ==
  * very easy using screen
  * just add the following line to the end of /etc/crontab (nano /etc/crontab)
 <pre>@reboot root screen -dmS email-tra /root/email-transc.sh</pre>
+
 check process
 ==
 <pre>screen -r email-tra</pre>
 * to detach screen to background again: crtl+a -> ctrl+d
+
 use productivly
 ==
 * change the passwords of the mailboxes
 * change the admin-password of mailcow (standard admin:moohoo)
 * set up ssh-key authentication and disable password-login on the machine
 * maybe use other user than root
+
 install updates
 ==
 * whisper
