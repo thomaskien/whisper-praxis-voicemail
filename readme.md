@@ -10,25 +10,30 @@ thanks to the heise computer magazin c't where the idea came from (https://www.h
 
 requirements
 ==
+* telephone system that sends out voicemail like any fritzbox or auerswald
 * needs 8GB of RAM
-* computer crashes if less RAM installed
+  - computer crashes if less RAM installed
+* local installed mailserver the manual way or mailcow for docker
+  - set SKIP_FTS=y SKIP_SOGO=y SKIP_CLAMD=y in mailcow.conf otherwise mailcow will eat all the ram
+  - adjust "Forwarding Hosts" in configuration otherwise the "spam" the script sends is not accepted (missing headers etc)
 * ca. 2012 old intel core i3/i5 is sufficient
-* (we run it on a i3-3220 which was taken out of service since no windows 11 support)
-* convertion time on that machine ca. 2min for a common prescription order with 20sec length 
-* maybe it will also run on raspberry pi 5 8GB ram (I will test that)
+  - (we run it on a i3-3220 which was taken out of service since no windows 11 support)
+  - convertion time on that machine ca. 2min for a common prescription order with 20sec length
+  - maybe it will also run on raspberry pi 5 8GB ram (I will test that)
+
 
 preperations
 ==
-* install fresh debian (tested on bookworm)
+* install fresh debian/raspbian (tested with debian 12 bookworm)
 <pre>
 # become root
 sudo su
-# maybe connect via ssh from your other machine if minimal install:
+# maybe connect via ssh from your other machine if minimal raspberry install:
 # service ssh start
-#update and install requirements and whisper:
+# update and install requirements and whisper:
 apt update
 apt upgrade
-apt install screen ffmpeg git mailutils
+apt install screen ffmpeg git mailutils swaks
 python3 -m venv whisperenv; source whisperenv/bin/activate
 pip install pip-review attachment-downloader
 pip install git+https://github.com/openai/whisper.git
@@ -42,7 +47,7 @@ nano email-transc.sh
 </pre>
 script
 ==
-* paste the following text and adjust what needed
+* paste the following text and adjust what needed // remove that is not needed
 <pre>
 <code>
 
@@ -55,19 +60,29 @@ python3 -m venv whisperenv; source whisperenv/bin/activate
 #looping all 30 sec.
 while : 
 do
+# =Fetch mails / empty mailbox1=
 # choose the right for you (help: attachment-downloader -h)
-attachment-downloader --host=imap.1und1.de --username=XXXXXXX --password=XXXXXXX --output=./wav/
-#attachment-downloader --unsecure --host=127.0.0.1 --username=ab1 --password=ab1 --output=./wav/ --delete --filename-template="{{ subject }} -- {{ attachment_name }}" 
+#attachment-downloader --host=imap.1und1.de --username=XXXXXXX --password=XXXXXXX --output=./wav/
+# the following good for auerswald since no caller number included in the file...
 #attachment-downloader --unsecure --host=127.0.0.1 --username=ab1 --password=ab1 --output=./wav/ --filename-template="{{ subject }}.mp3" --delete 
+#or:
+#attachment-downloader --unsecure --host=127.0.0.1 --username=ab1 --password=ab1 --output=./wav/ --delete --filename-template="{{ subject }} -- {{ attachment_name }}" 
 #attachment-downloader --unsecure --host=127.0.0.1 --username=ab1 --password=ab1 --output=./wav/ --delete 
 #attachment-downloader --unsecure --host=127.0.0.1 --username=ab1 --password=ab1 --output=./wav/ 
+#fritzbox-voicemail+mailcow
+attachment-downloader --starttls --host=127.0.0.1 --username=ab1@praxis.local --password=ab1 --output=./wav/  --delete
 date 
+
+# maybe remove system characters like auerswald uses in the subject
 cd wav 
-# remove strange characters like auerswald uses
-for file in *; do mv "$file" $(echo "$file" | sed -e 's/[^A-Za-z0-9._-]/_/g'); done 
+#for file in *; do mv "$file" $(echo "$file" | sed -e 's/[^A-Za-z0-9._-]/_/g'); done 
 cd .. 
+
 # adapt to *.mp3 depending on you telephone system
 FILES="./wav/*.wav" 
+#FILES="./wav/*.mp3" 
+
+# =Whisper/email send loop itself=
 for f in $FILES 
 do 
 if [ -e "$f" ]; then 
@@ -84,12 +99,24 @@ if [ -e "$OUT" ]; then
 echo "File exists." 
 echo >> "$OUT" 
 echo >> "$OUT" 
-SUB=$(echo "$f" | sed 's/Voicemail___/+/g' | sed 's/wav//g' | sed 's/[.//]//g'| sed 's/_/ /g' | sed 's/+49/0/g' | sed 's/mp3//g') 
+#auerswald
+#SUB=$(echo "$f" | sed 's/Voicemail___/+/g' | sed 's/wav//g' | sed 's/[.//]//g'| sed 's/_/ /g' | sed 's/+49/0/g' | sed 's/mp3//g') 
+#fritz
+SUB=$(echo "$f" | sed 's/Anruf./von__/g' | sed 's/.wav//g' | sed 's/wav//g' | sed 's/[.//]//g') 
 echo Infos: "$SUB" >> "$OUT" 
 echo >> "$OUT" 
-echo >> "$OUT" 
 echo Dateiname: "$f" >> "$OUT" 
-cat "$OUT" | mail -aFrom:Voicemail\<root@praxis.local\> -s "TEXT: $SUB" ab2@praxis.local -A $f 
+echo >> "$OUT" 
+
+#=send out email=
+#system-mail needs to configre MTA e.g. postfix with smarthost:
+#cat "$OUT" | mail -aFrom:Voicemail\<root@praxis.local\> -s "TEXT: $SUB" ab2@praxis.local -A $f
+#sendEmail.pl also is good:
+#cat "$OUT" | ./sendEmail.pl -t ab2@praxis.local -f ab1@praxis.local -s 127.0.0.1:25 -v -u "TEXT: $SUB" -a $f 
+#swaks is the best option
+swaks -s 127.0.0.1 -f Voicemail -t ab2@praxis.local --body $OUT --attach $f –suppress-data --header 'Subject: TEXT: '$SUB'' 
+
+=clean up=
 mv "$f" ./done/ 
 cat "$OUT" 
 mv "$OUT" ./done/ 
@@ -97,7 +124,8 @@ fi
 date 
 sleep 3 
 done
-echo "Press [CTRL+C] to stop.." 
+echo "Press [CTRL+C] to stop.."
+# wait 30 seconds and then start from top
 sleep 30 
 done  
 </code>
